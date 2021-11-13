@@ -1,5 +1,11 @@
+import Layout from "./components/Layout";
+
 const App = () => {
-  return <div>Job listings</div>;
+  return (
+    <Layout>
+      <h1>Job Listings</h1>
+    </Layout>
+  );
 };
 
 export default App;
