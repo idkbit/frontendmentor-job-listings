@@ -18,10 +18,11 @@ const App = () => {
 };
 
 const JobList = styled.main`
-  margin-top: 5rem;
+  margin: 5rem 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 0 2rem;
 `;
 
 export default App;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../styles";
 
 const Card = ({
   job: {
@@ -18,23 +19,40 @@ const Card = ({
 }) => {
   return (
     <StyledCard featured={featured}>
-      <div className="image-container">
-        <img src={logo} alt={`${company} logo.`} />
-      </div>
-      <div>
-        <div className="container">
-          <h2>{company}</h2>
-          {isNew && <button className="new">new!</button>}
-          {featured && <button className="featured">featured</button>}
-          <h3 className="position">{position}</h3>
-          <div className="details">
-            <span>{postedAt}</span>
-            <span className="bullet"> &bull;</span>
-            <span>{contract}</span>
-            <span className="bullet"> &bull;</span>
-            <span>{location}</span>
+      <div className="wrapper">
+        <div className="image-container">
+          <img src={logo} alt={`${company} logo.`} />
+        </div>
+        <div>
+          <div className="container">
+            <div className="row">
+              <h2>{company}</h2>
+              {isNew && <button className="new">new!</button>}
+              {featured && <button className="featured">featured</button>}
+            </div>
+
+            <h3 className="position">{position}</h3>
+            <div className="details">
+              <span>{postedAt}</span>
+              <span className="bullet"> &bull;</span>
+              <span>{contract}</span>
+              <span className="bullet"> &bull;</span>
+              <span>{location}</span>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div className="divider"></div>
+      <div className="skills">
+        <Button>{role}</Button>
+        <Button>{level}</Button>
+        {languages.map((l) => (
+          <Button key={l}>{l}</Button>
+        ))}
+        {tools.map((l) => (
+          <Button key={l}>{l}</Button>
+        ))}
       </div>
     </StyledCard>
   );
@@ -42,6 +60,7 @@ const Card = ({
 
 const StyledCard = styled.article`
   background-color: var(--card);
+  box-shadow: 0 0 10px 1px var(--btn);
   padding: 2rem;
   border-radius: 5px;
   position: relative;
@@ -49,8 +68,12 @@ const StyledCard = styled.article`
     ${(props) => (props.featured ? "var(--primary)" : "transparent")};
   display: flex;
   flex-direction: column;
-  @media (min-width: 600px) {
+  @media (min-width: 900px) {
     flex-direction: row;
+    justify-content: space-between;
+    .wrapper {
+      display: flex;
+    }
   }
 
   .image-container {
@@ -65,7 +88,7 @@ const StyledCard = styled.article`
       height: 100%;
       object-fit: cover;
     }
-    @media (min-width: 600px) {
+    @media (min-width: 900px) {
       position: static;
       width: auto;
       height: auto;
@@ -83,6 +106,10 @@ const StyledCard = styled.article`
     font-weight: 700;
   }
 
+  .position {
+    color: var(--vdgc);
+  }
+
   button {
     cursor: pointer;
     transition: all 0.2s ease;
@@ -91,8 +118,12 @@ const StyledCard = styled.article`
     }
   }
 
+  .row {
+    display: flex;
+  }
+
   .container {
-    @media (min-width: 600px) {
+    @media (min-width: 900px) {
       margin-left: 2rem;
     }
   }
@@ -105,7 +136,7 @@ const StyledCard = styled.article`
     text-transform: uppercase;
     border-radius: 10px;
     font-weight: 700;
-    margin-right: 0.5rem;
+    margin: 0 0.5rem;
   }
 
   .featured {
@@ -136,6 +167,22 @@ const StyledCard = styled.article`
 
   .bullet {
     margin: 0 0.5rem;
+  }
+
+  .divider {
+    height: 1px;
+    background-color: var(--vdgc);
+    margin: 1rem 0;
+
+    @media (min-width: 900px) {
+      display: none;
+    }
+  }
+
+  .skills {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
