@@ -1,17 +1,35 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Card from "./components/Card";
+import FilterList from "./components/FilterList";
 import Layout from "./components/Layout";
 import data from "./data";
 
 const App = () => {
-  const [jobList, setJobList] = useState(data);
+  const [filtered, setFiltered] = useState([]);
+  const [filters, setFilters] = useState([]);
+
   return (
     <Layout>
       <JobList>
-        {jobList.map((job) => (
-          <Card key={job.id} job={job} />
-        ))}
+        <FilterList filters={filters} setFilters={setFilters} />
+        {filtered.length > 0
+          ? filtered.map((job) => (
+              <Card
+                filters={filters}
+                setFilters={setFilters}
+                key={job.id}
+                job={job}
+              />
+            ))
+          : data.map((job) => (
+              <Card
+                filters={filters}
+                setFilters={setFilters}
+                key={job.id}
+                job={job}
+              />
+            ))}
       </JobList>
     </Layout>
   );

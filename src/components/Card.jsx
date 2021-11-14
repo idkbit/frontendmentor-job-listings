@@ -16,7 +16,13 @@ const Card = ({
     languages,
     tools,
   },
+  filters,
+  setFilters,
 }) => {
+  const onFilterClick = (e) => {
+    if (filters.includes(e.target.outerText)) return;
+    setFilters([...filters, e.target.outerText]);
+  };
   return (
     <StyledCard featured={featured}>
       <div className="wrapper">
@@ -27,8 +33,16 @@ const Card = ({
           <div className="container">
             <div className="row">
               <h2>{company}</h2>
-              {isNew && <button className="new">new!</button>}
-              {featured && <button className="featured">featured</button>}
+              {isNew && (
+                <button onClick={onFilterClick} className="new">
+                  new!
+                </button>
+              )}
+              {featured && (
+                <button onClick={onFilterClick} className="featured">
+                  featured
+                </button>
+              )}
             </div>
 
             <h3 className="position">{position}</h3>
@@ -45,13 +59,17 @@ const Card = ({
 
       <div className="divider"></div>
       <div className="skills">
-        <Button>{role}</Button>
-        <Button>{level}</Button>
+        <Button onClick={onFilterClick}>{role}</Button>
+        <Button onClick={onFilterClick}>{level}</Button>
         {languages.map((l) => (
-          <Button key={l}>{l}</Button>
+          <Button onClick={onFilterClick} key={l}>
+            {l}
+          </Button>
         ))}
         {tools.map((l) => (
-          <Button key={l}>{l}</Button>
+          <Button onClick={onFilterClick} key={l}>
+            {l}
+          </Button>
         ))}
       </div>
     </StyledCard>
