@@ -33,6 +33,9 @@ const Container = styled.div`
   background-color: var(--bg);
   min-height: 80vh;
   padding: 0 2rem;
+  @media (min-width: 950px) {
+    padding: 0 10rem;
+  }
 `;
 
 export default Layout;

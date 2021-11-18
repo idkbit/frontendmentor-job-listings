@@ -201,7 +201,7 @@ const StyledCard = styled.article`
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    @media (min-width: 900px) {
+    @media (min-width: 1200px) {
       flex-wrap: nowrap;
     }
   }
