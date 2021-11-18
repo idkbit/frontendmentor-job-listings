@@ -20,7 +20,14 @@ const Card = ({
   setFilters,
 }) => {
   const onFilterClick = (key, value) => {
-    console.log(key, value);
+    if (key === "role" || key === "level") {
+      setFilters({ ...filters, [key]: value });
+      return;
+    }
+
+    if (filters[key].includes(value)) return;
+
+    setFilters({ ...filters, [key]: [...filters[key], value] });
   };
   return (
     <StyledCard featured={featured}>

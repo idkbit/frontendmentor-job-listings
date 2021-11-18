@@ -3,19 +3,42 @@ import { Button } from "../styles";
 import cross from "../images/icon-remove.svg";
 
 const FilterList = ({ filters, setFilters }) => {
-  const onFilterDelete = (filter) => {
-    setFilters(filters.filter((f) => f !== filter));
+  const onFilterDelete = (key, value) => {
+    if (key === "role") {
+      setFilters({ ...filters, [key]: "" });
+      return;
+    }
+    if (key === "level") {
+      setFilters({ ...filters, [key]: "" });
+      return;
+    }
+
+    setFilters({ ...filters, [key]: filters[key].filter((v) => v !== value) });
   };
   return (
     <FilterContainer>
-      {filters.map((filter) => (
-        <div key={filter}>
-          <LookLikeButton className="looklikebtn">{filter}</LookLikeButton>
-          <button onClick={() => onFilterDelete(filter)}>
-            <img src={cross} alt="" />
-          </button>
-        </div>
-      ))}
+      {Object.entries(filters).map(([key, value]) => {
+        if (!value || value.length === 0) return null;
+        console.log(key, value);
+        if (typeof value === "string")
+          return (
+            <div key={value}>
+              <LookLikeButton className="looklikebtn">{value}</LookLikeButton>
+              <button onClick={() => onFilterDelete(key, value)}>
+                <img src={cross} alt="" />
+              </button>
+            </div>
+          );
+
+        return value.map((v) => (
+          <div key={v}>
+            <LookLikeButton className="looklikebtn">{v}</LookLikeButton>
+            <button onClick={() => onFilterDelete(key, v)}>
+              <img src={cross} alt="" />
+            </button>
+          </div>
+        ));
+      })}
     </FilterContainer>
   );
 };
