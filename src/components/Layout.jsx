@@ -24,9 +24,11 @@ const StyledLayout = styled.div`
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   background-color: var(--bg);
   min-height: 80vh;
+  padding: 0 2rem;
 `;
 
 export default Layout;

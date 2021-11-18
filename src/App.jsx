@@ -28,8 +28,8 @@ const App = () => {
 
   return (
     <Layout>
+      <FilterList filters={filters} setFilters={setFilters} />
       <JobList>
-        <FilterList filters={filters} setFilters={setFilters} />
         {filtered.length > 0
           ? filtered.map((job) => (
               <Card
@@ -57,7 +57,6 @@ const JobList = styled.main`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 0 2rem;
 `;
 
 export default App;

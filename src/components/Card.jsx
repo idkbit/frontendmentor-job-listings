@@ -200,6 +200,10 @@ const StyledCard = styled.article`
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
+    @media (min-width: 900px) {
+      flex-wrap: nowrap;
+    }
   }
 `;
 
