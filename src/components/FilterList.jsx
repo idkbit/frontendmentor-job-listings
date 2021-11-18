@@ -69,7 +69,7 @@ const LookLikeButton = styled(Button).attrs({
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: var(--card);
+  background-color: #fff;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 5px 10px 0px var(--btn);

@@ -75,7 +75,7 @@ const Card = ({
 };
 
 const StyledCard = styled.article`
-  background-color: var(--card);
+  background-color: #fff;
   box-shadow: 0 0 10px 1px var(--btn);
   padding: 2rem;
   border-radius: 5px;
