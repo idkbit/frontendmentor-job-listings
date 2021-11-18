@@ -7,7 +7,12 @@ import data from "./data";
 
 const App = () => {
   const [filtered, setFiltered] = useState([]);
-  const [filters, setFilters] = useState([]);
+  const [filters, setFilters] = useState({
+    role: "",
+    level: "",
+    tools: [],
+    languages: [],
+  });
 
   return (
     <Layout>

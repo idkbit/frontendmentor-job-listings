@@ -19,9 +19,8 @@ const Card = ({
   filters,
   setFilters,
 }) => {
-  const onFilterClick = (e) => {
-    if (filters.includes(e.target.outerText)) return;
-    setFilters([...filters, e.target.outerText]);
+  const onFilterClick = (key, value) => {
+    console.log(key, value);
   };
   return (
     <StyledCard featured={featured}>
@@ -33,16 +32,8 @@ const Card = ({
           <div className="container">
             <div className="row">
               <h2>{company}</h2>
-              {isNew && (
-                <button onClick={onFilterClick} className="new">
-                  new!
-                </button>
-              )}
-              {featured && (
-                <button onClick={onFilterClick} className="featured">
-                  featured
-                </button>
-              )}
+              {isNew && <span className="new">new!</span>}
+              {featured && <span className="featured">featured</span>}
             </div>
 
             <h3 className="position">{position}</h3>
@@ -59,15 +50,15 @@ const Card = ({
 
       <div className="divider"></div>
       <div className="skills">
-        <Button onClick={onFilterClick}>{role}</Button>
-        <Button onClick={onFilterClick}>{level}</Button>
+        <Button onClick={() => onFilterClick("role", role)}>{role}</Button>
+        <Button onClick={() => onFilterClick("level", level)}>{level}</Button>
         {languages.map((l) => (
-          <Button onClick={onFilterClick} key={l}>
+          <Button onClick={() => onFilterClick("languages", l)} key={l}>
             {l}
           </Button>
         ))}
         {tools.map((l) => (
-          <Button onClick={onFilterClick} key={l}>
+          <Button onClick={() => onFilterClick("tools", l)} key={l}>
             {l}
           </Button>
         ))}
@@ -138,6 +129,7 @@ const StyledCard = styled.article`
 
   .row {
     display: flex;
+    align-items: center;
   }
 
   .container {
@@ -147,24 +139,24 @@ const StyledCard = styled.article`
   }
 
   .new {
-    border: none;
+    display: inline-block;
     background-color: var(--primary);
     color: var(--card);
     padding: 0.3rem 0.4rem;
     text-transform: uppercase;
-    border-radius: 10px;
-    font-weight: 700;
+    border-radius: 30px;
     margin: 0 0.5rem;
+    font-size: 0.8rem;
   }
 
   .featured {
-    border: none;
+    display: inline-block;
     background-color: var(--vdgc);
     color: var(--card);
     padding: 0.3rem 0.4rem;
-    border-radius: 10px;
+    border-radius: 30px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-size: 0.8rem;
   }
 
   .position {
