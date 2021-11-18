@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import bgDesktop from "../images/bg-header-desktop.svg";
+import bgMobile from "../images/bg-header-mobile.svg";
 
 const Layout = ({ children }) => {
   return (
@@ -11,11 +12,14 @@ const Layout = ({ children }) => {
 };
 
 const Header = styled.div`
-  background-image: url(${bgDesktop});
+  background-image: url(${bgMobile});
   background-repeat: no-repeat;
   background-size: cover;
   background-color: var(--primary);
   min-height: 20vh;
+  @media (min-width: 900px) {
+    background-image: url(${bgDesktop});
+  }
 `;
 
 const StyledLayout = styled.div`
