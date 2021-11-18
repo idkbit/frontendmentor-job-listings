@@ -17,7 +17,7 @@ const App = () => {
     if (filters.role && job.role !== filters.role) return false;
     if (filters.level && job.level !== filters.level) return false;
     if (filters.tools.length) {
-      if (!filters.tools.every((t) => job.includes(t))) return false;
+      if (!filters.tools.every((t) => job.tools.includes(t))) return false;
     }
     if (filters.languages.length) {
       if (!filters.languages.every((l) => job.languages.includes(l)))
