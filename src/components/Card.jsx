@@ -21,11 +21,21 @@ const Card = ({
 }) => {
   const onFilterClick = (key, value) => {
     if (key === "role" || key === "level") {
+      if (filters[key] === value) {
+        setFilters({ ...filters, [key]: "" });
+        return;
+      }
       setFilters({ ...filters, [key]: value });
       return;
     }
 
-    if (filters[key].includes(value)) return;
+    if (filters[key].includes(value)) {
+      setFilters({
+        ...filters,
+        [key]: filters[key].filter((v) => v !== value),
+      });
+      return;
+    }
 
     setFilters({ ...filters, [key]: [...filters[key], value] });
   };
